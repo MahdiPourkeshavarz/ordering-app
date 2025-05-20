@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
 
-export * from './database.module';
-export * from './abstract.schema';
-export * from './abstract.repository';
+export * from './database/database.module';
+export * from './database/abstract.schema';
+export * from './database/abstract.repository';
