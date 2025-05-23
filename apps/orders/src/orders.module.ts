@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { Module } from '@nestjs/common';
 import { OrdersController } from './orders.controller';
 import { OrdersService } from './orders.service';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
-import { DatabaseModule } from '@app/common';
+import { DatabaseModule, RmqModule } from '@app/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Order, OrderSchema } from './schemas/order.schema';
 import { OrdersRepository } from './orders.repository';
+import { BILLING_SERVICE } from '../constants/services';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,6 +26,9 @@ import { OrdersRepository } from './orders.repository';
         schema: OrderSchema,
       },
     ]),
+    RmqModule.register({
+      name: BILLING_SERVICE,
+    }),
   ],
   controllers: [OrdersController],
   providers: [OrdersService, OrdersRepository],
