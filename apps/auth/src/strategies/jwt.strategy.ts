@@ -21,7 +21,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
           return request?.Authentication;
         },
       ]),
-      secretOrKey: configService.get('JWT_SECRET') || 'meitipk',
+      secretOrKey: configService.get('JWT_SECRET') as string,
     });
   }
 
