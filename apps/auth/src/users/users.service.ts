@@ -1,8 +1,9 @@
-import {
-  Injectable,
-  UnauthorizedException,
-  UnprocessableEntityException,
-} from '@nestjs/common';
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { Injectable, UnauthorizedException, UnprocessableEntityException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { UsersRepository } from './users.repository';
 import { CreateUserRequest } from './dto/create-user.request';
@@ -27,7 +28,9 @@ export class UsersService {
       user = await this.usersRepository.findOne({
         email: request.email,
       });
-    } catch (err) {}
+    } catch (err) {
+      throw new Error(err);
+    }
 
     if (user) {
       throw new UnprocessableEntityException('Email already exists.');

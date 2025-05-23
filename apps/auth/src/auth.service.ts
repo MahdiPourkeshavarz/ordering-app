@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/require-await */
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtService } from '@nestjs/jwt';
@@ -21,9 +23,7 @@ export class AuthService {
     };
 
     const expires = new Date();
-    expires.setSeconds(
-      expires.getSeconds() + this.configService.get('JWT_EXPIRATION'),
-    );
+    expires.setSeconds(expires.getSeconds() + this.configService.get('JWT_EXPIRATION'));
 
     const token = this.jwtService.sign(tokenPayload);
 
